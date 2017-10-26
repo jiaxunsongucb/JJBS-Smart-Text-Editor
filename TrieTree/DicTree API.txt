@@ -1,0 +1,32 @@
+class AutoComplete API:
+
+
+Constructor:
+tree = AutoComplete()  ---This builds an empty dictionary tree 
+
+Methods:
+
+1. tree.addWord(x)
+-----------------------------------------------------------------------
+Function: adds a word and store it in the tree 
+Notice: parameter x passed to the method has to be of a string type
+
+
+2. tree.isWord(x)
+-----------------------------------------------------------------------
+Function: helps to determine whether x is a word in the tree dictionary
+Notice: parameter x passed to the method has to be of a string type
+
+
+3. tree.prediction(prefix, numwords):
+-----------------------------------------------------------------------
+Parameter: prefix is the letters of a word that has already been inserted
+and to be autocompleted; numwords is the number of suggestions for autocomplete
+we provide
+
+Function: Given already inserted letters prefix, we provide numwords (an 
+integer) suggestions
+
+
+
+
