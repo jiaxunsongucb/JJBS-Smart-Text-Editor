@@ -58,12 +58,13 @@ class Trie():
         word = word.lower()
         self.root = Trie.__insert(self.root, word)
     
-    def insert(self, word):
+    def insert(self, word): # faster
         """
         Inserts a word into the trie.
         :type word: str
         :rtype: void
         """
+        word = word.lower()
         currNode = self.root
         p = 0
         while p < len(word):
@@ -103,24 +104,24 @@ class Trie():
         return result
 
 
-if __name__ == '__main__':	
-	x = Trie()
-	x.insert("haha")
-	x.insert("hey")
-	x.insert("ji")
-	x.insert("ju")
-	x.insert("jupes")
-	x.insert("happy")
-	x.insert("hallo")
-	x.insert("harley")
-	x.insert("Jason")
-	x.insert("jokes")
-	x.insert("jakes")
-	x.insert("james")
-	x.insert("jam")
-	x.insert("jaail")
-	x.insert("jail")
-	print(x.prediction("ha",5))
-	print(x.search("Ber"))
-	print(x.search("happy"))
-	print(x.prediction("okay",3))
+if __name__ == '__main__':  
+    x = Trie()
+    x.insert("haha")
+    x.insert("hey")
+    x.insert("ji")
+    x.insert("ju")
+    x.insert("jupes")
+    x.insert("happy")
+    x.insert("hallo")
+    x.insert("harley")
+    x.insert("Jason")
+    x.insert("jokes")
+    x.insert("jakes")
+    x.insert("james")
+    x.insert("jam")
+    x.insert("jaail")
+    x.insert("jail")
+    print(x.prediction("ha",5))
+    print(x.search("Ber"))
+    print(x.search("happy"))
+    print(x.prediction("okay",3))

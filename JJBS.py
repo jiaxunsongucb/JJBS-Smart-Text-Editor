@@ -299,7 +299,7 @@ if __name__ == '__main__':
     # An instance of Trie storing the words that the word_Cloud function needs to filter.
     blacklist = Trie()
     addDic(blacklist,open('connectives','r'))
-    print (time.time() - start)
+    print ("Loading time: ", time.time() - start)
     # The main interface
     root = Tk()
     root.title("JJBS")
