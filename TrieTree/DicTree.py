@@ -1,6 +1,6 @@
 import queue
 		
-class Trie:
+class TrieNode:
 	children = dict()
 	word =""
 	isWord = False
@@ -26,7 +26,7 @@ class Trie:
 	def insert (self,x):
 		if x in self.children:
 			return None
-		child = Trie(self.word + x)
+		child = TrieNode(self.word + x)
 		self.children[x] = child;
 		return
 			
@@ -39,15 +39,15 @@ class Trie:
 	def getChildrenCharacters(self):
 		return self.children.keys()
 		
-class DicTree:
+class Trie:
 	
 	dicroot = None
 	
 	def __init__(self):
-		self.dicroot = Trie()
+		self.dicroot = TrieNode()
 		
-# defining method to addWord to the Trie Dictionary		
-	def addWord(self, x):
+# defining method to insert to the Trie Dictionary		
+	def insert(self, x):
 		curnode = self.dicroot
 		count = 0
 		x = x.lower()
@@ -70,7 +70,7 @@ class DicTree:
 
 			
 #judging whether an insertion is a real word	 
-	def isWord(self,x):
+	def search(self,x):
 	 	curnode = self.dicroot
 	 	count = 0
 	 	x = x.lower()
@@ -116,23 +116,23 @@ class DicTree:
 
 
 if __name__ == '__main__':	
-	x = DicTree()
-	x.addWord("haha")
-	x.addWord("hey")
-	x.addWord("ji")
-	x.addWord("ju")
-	x.addWord("jupes")
-	x.addWord("happy")
-	x.addWord("hallo")
-	x.addWord("harley")
-	x.addWord("Jason")
-	x.addWord("jokes")
-	x.addWord("jakes")
-	x.addWord("james")
-	x.addWord("jam")
-	x.addWord("jaail")
-	x.addWord("jail")
+	x = Trie()
+	x.insert("haha")
+	x.insert("hey")
+	x.insert("ji")
+	x.insert("ju")
+	x.insert("jupes")
+	x.insert("happy")
+	x.insert("hallo")
+	x.insert("harley")
+	x.insert("Jason")
+	x.insert("jokes")
+	x.insert("jakes")
+	x.insert("james")
+	x.insert("jam")
+	x.insert("jaail")
+	x.insert("jail")
 	print(x.prediction("ha",5))
-	print(x.isWord("Ber"))
-	print(x.isWord("happy"))
+	print(x.search("Ber"))
+	print(x.search("happy"))
 	print(x.prediction("okay",3))

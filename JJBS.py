@@ -15,7 +15,8 @@ import matplotlib.pyplot as plt
 from scipy.misc import imread
 from wordcloud import WordCloud,ImageColorGenerator #pip install wordcloud
 
-from TrieTree.DicTree import *
+# from TrieTree.DicTree import Trie
+from Trie import Trie
 from flesch_index import *
 import markov
 
@@ -77,7 +78,7 @@ class textBox(Text):
         Check if the current word is in the dictionary.
         '''
         for i in range(len(self.contentList)):
-            if (not dic.isWord(self.contentList[i])) and ((not self.contentList[i].isnumeric()) and (self.contentList[i].isalpha())):
+            if (not dic.search(self.contentList[i])) and ((not self.contentList[i].isnumeric()) and (self.contentList[i].isalpha())):
                 self.tag_add('red', '1.0 + '+str(self.position[i][0])+' chars', '1.0 + '+str(self.position[i][1])+' chars')
 
     def wordsCount(self):
@@ -236,7 +237,7 @@ def wordsCloud():
     contentList=textEntry.contentList
     word_frequence={}
     for w in contentList:
-        if not blacklist.isWord(w):
+        if not blacklist.search(w):
             if w not in word_frequence:
                 word_frequence[w]=1
             else:
@@ -277,7 +278,7 @@ def addDic(dic,f=open('words.txt','r')):
     Read the words in the file and add them into the dictionary.
     '''
     for line in f:
-        dic.addWord(line.strip())
+        dic.insert(line.strip())
     f.close()
 
 def addWords():
@@ -290,12 +291,15 @@ def addWords():
         textEntry.refresh('<KeyRelease>')
 
 if __name__ == '__main__':
+    import time
+    start = time.time()
     # An instance of Trie storing dictionary.
-    dic = DicTree()
+    dic = Trie()
     addDic(dic)
     # An instance of Trie storing the words that the word_Cloud function needs to filter.
-    blacklist = DicTree()
+    blacklist = Trie()
     addDic(blacklist,open('connectives','r'))
+    print (time.time() - start)
     # The main interface
     root = Tk()
     root.title("JJBS")
