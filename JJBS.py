@@ -292,13 +292,28 @@ def addWords():
 
 if __name__ == '__main__':
     import time
+    import pickle
+    from pathlib import Path
+
     start = time.time()
-    # An instance of Trie storing dictionary.
-    dic = Trie()
-    addDic(dic)
-    # An instance of Trie storing the words that the word_Cloud function needs to filter.
-    blacklist = Trie()
-    addDic(blacklist,open('connectives','r'))
+    
+    obj_file = Path("dictionary.pkl")
+    if obj_file.exists():
+        print ("Loading dictionary from object file...")
+        with open("dictionary.pkl", "rb") as input:
+            dic = pickle.load(input)
+            blacklist = pickle.load(input)
+    else:
+        # An instance of Trie storing dictionary.
+        dic = Trie()
+        addDic(dic)
+        # An instance of Trie storing the words that the word_Cloud function needs to filter.
+        blacklist = Trie()
+        addDic(blacklist, open('connectives','r'))
+        with open("dictionary.pkl", "wb") as output:
+            pickle.dump(dic, output, pickle.HIGHEST_PROTOCOL)
+            pickle.dump(blacklist, output, pickle.HIGHEST_PROTOCOL)
+    
     print ("Loading time: ", time.time() - start)
     # The main interface
     root = Tk()
